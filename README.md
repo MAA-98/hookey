@@ -1,21 +1,26 @@
-# Hookey
+# hookey
 
-Execution layer over `ropey`, the popular Rust text buffer library.
+Cursor and buffer execution layer over `ropey`, the popular Rust text buffer library.
 
-## Scope
+## Planned Features
 
-- Persistent cursor
-- Hooks over common text structures to query or modify.
-- Primitive and increasingly complex commands for text and cursor manipulation, goal of including all nvim style commands (or sane approximations thereof).
+- Editor: persistent cursor and text buffer
+- Actions: user-level intents for manipulating editor. Starting with primitive, then increasingly complex commands for text and cursor manipulation. Goal of including all vim style commands (or sane approximations thereof).
+- Editor hooks for efficient event-based API
 - Command-based undo/redo tree
 
-Out of scope:
-- Registers: commands are either destructive (do not return values) or return values and let library consumers decide what to do with it.
-- Command interpreter/DSL: Consumers have to call the APIs typed commands or hooks. 
+## Out of scope
+
+- Registers: actions can return data through hooks, API client decides how to handle.
+- Command interpreter/DSL: API client calls typed actions. Custom actions can be built with a sequence of provided ones. 
 - File reading/management
 - Rendering
 
-## Architecture
+## Example App
 
-- Execution is through an action queue with inversion of control; actions on the editor (buffer+cursor) are added to a FIFO queue, which executes without explicit call. 
-- Optimizations like parallel execution on subsections can be tried.
+Repository contains a `hookey-playground` terminal app using crossterm and ratatui.
+It's not optimized as a full file editor, but shows how to use `hookey` and test out actions/commands.
+
+## Current TODOs
+
+- Flesh out `hookey-playground` to load file contents to buffer
