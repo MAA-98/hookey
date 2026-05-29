@@ -1,0 +1,11 @@
+[package]
+name = "hookey"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ropey = "1"
+
+[workspace]
+members = ["hookey-playground"]
+resolver = "2"

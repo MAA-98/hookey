@@ -1,0 +1,10 @@
+[package]
+name = "hookey-playground"
+version = "0.1.0"
+edition = "2024"
+publish= false
+
+[dependencies]
+hookey = { path = ".." }
+ratatui = "0.30"
+crossterm = "0.29"
